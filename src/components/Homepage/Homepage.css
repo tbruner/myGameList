@@ -1,3 +1,13 @@
 .home-section {
-  padding: 150px 0;
+  margin: 75px 0;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hero-img {
+  height: 400px;
 }
