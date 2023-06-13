@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import GamePage from "../GamePage.jsx";
-import Homepage from "../Homepage.jsx";
-import Profile from "../Profile.jsx";
+import GamePage from "../GamePage/GamePage.jsx";
+import Homepage from "../Homepage/Homepage.jsx";
+import Profile from "../Profile/Profile.jsx";
 import TitleBar from "../TitleBar/TitleBar.jsx";
 import "./App.css";
 
