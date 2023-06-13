@@ -7,7 +7,7 @@ function TitleBar() {
         <div className="nav-brand-search">
           <div className="logo">Logo</div>
           <div className="nav-search">
-            <input type="text" placeholder="Search" />
+            <input type="text" placeholder="Search Video Games" />
             <button>Search</button>
           </div>
         </div>
