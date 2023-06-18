@@ -1,4 +1,5 @@
 import GameCard from "../GameCard/GameCard";
+
 function Trending() {
   return (
     <>
