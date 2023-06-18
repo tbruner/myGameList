@@ -1,3 +1,4 @@
+import Trending from "./Trending.jsx";
 import "./Homepage.css";
 
 function Homepage() {
@@ -28,6 +29,7 @@ function Homepage() {
       </section>
       <section className="home-section trending-games">
         <h2>Trending Games</h2>
+        <Trending />
       </section>
       <section className="home-section fourm">
         <h2>Fourm</h2>
