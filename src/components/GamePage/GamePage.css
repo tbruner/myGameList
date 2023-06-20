@@ -1,0 +1,13 @@
+.game-page {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.game-score-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
