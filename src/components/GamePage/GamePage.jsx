@@ -1,6 +1,26 @@
 import "./GamePage.css";
 
 function GamePage() {
+  let gameScore = "-";
+  let gameScoreStyle = {
+    backgroundColor: "hsl(120, 9%, 46%)",
+  };
+
+  //gameScore background color; rating from 0 to 5
+  if (gameScore === 5) {
+    gameScoreStyle = { backgroundColor: "#00BC29" };
+  } else if (gameScore < 5 && gameScore >= 4) {
+    gameScoreStyle = { backgroundColor: "#39DC2D" };
+  } else if (gameScore < 4 && gameScore >= 3) {
+    gameScoreStyle = { backgroundColor: "#B4D631" };
+  } else if (gameScore < 3 && gameScore >= 2) {
+    gameScoreStyle = { backgroundColor: "#FFC739" };
+  } else if (gameScore < 2 && gameScore >= 1) {
+    gameScoreStyle = { backgroundColor: "#FFA44A" };
+  } else if (gameScore < 1 && gameScore >= 0) {
+    gameScoreStyle = { backgroundColor: "#FF003E" };
+  }
+
   return (
     <div className="game-page">
       <div className="main-game-card">
@@ -37,7 +57,9 @@ function GamePage() {
       <div className="game-score-time">
         <div className="game-score-card">
           <div>Score</div>
-          <div className="avg-game-score">90</div>
+          <div className="avg-game-score" style={gameScoreStyle}>
+            {gameScore}
+          </div>
           <button className="submit-score">Submit Score</button>
         </div>
         <div className="game-time-card">
