@@ -1,7 +1,8 @@
 import "./GamePage.css";
 
-function GamePage() {
-  let gameScore = "-";
+function GamePage({ gameObject }) {
+  const gameScore = gameObject.score;
+  const gameArt = gameObject.image ?? "src/assets/game-art-placeholder.png";
   let gameScoreStyle = {
     backgroundColor: "hsl(120, 9%, 46%)",
   };
@@ -24,32 +25,28 @@ function GamePage() {
   return (
     <div className="game-page">
       <div className="main-game-card">
-        <h2 className="game-title">Game Title</h2>
+        <h2 className="game-title">{gameObject.title}</h2>
 
-        <p className="game-credits">developer, publisher</p>
-        <img src="src/assets/game-art-placeholder.png" alt="game-art"></img>
+        <p className="game-credits">
+          {gameObject.developer}, {gameObject.publisher}
+        </p>
+        <img src={gameArt} alt="game-art"></img>
       </div>
 
       <div className="game-info">
-        <p className="game-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Cum sociis
-          natoque penatibus et magnis. Curabitur vitae nunc sed velit dignissim
-          sodales ut eu. Ipsum dolor sit amet consectetur.
-        </p>
+        <p className="game-description">{gameObject.description}</p>
         <div className="platforms-genres">
           <div className="platforms">
-            <div>Platforms</div>
-            <div>Nintendo Switch</div>
-            <div>Steam</div>
-            <div>Xbox Series X|S</div>
-            <div>Windows PC</div>
+            <div className="game-info-heading">Platforms</div>
+            {gameObject.platforms.map((platform) => (
+              <div key={platform + gameObject.title}>{platform}</div>
+            ))}
           </div>
           <div className="genres">
-            <div>Genres</div>
-            <div>Adventure</div>
-            <div>Action</div>
-            <div>Platformer</div>
+            <div className="game-info-heading">Genres</div>
+            {gameObject.genres.map((genre) => (
+              <div key={genre + gameObject.title}>{genre}</div>
+            ))}
           </div>
         </div>
       </div>
@@ -63,8 +60,8 @@ function GamePage() {
           <button className="submit-score">Submit Score</button>
         </div>
         <div className="game-time-card">
-          <div>Time to Beat</div>
-          <div className="avg-game-time">9 hours</div>
+          <div>Average Completion Time</div>
+          <div className="avg-game-time">{gameObject.completionTime}</div>
           <button className="submit-time">Submit Time</button>
         </div>
       </div>
