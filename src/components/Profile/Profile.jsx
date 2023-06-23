@@ -1,14 +1,18 @@
 import "./Profile.css";
 
-function Profile() {
+function Profile({ userObject }) {
+  const coverImg = userObject.coverImg ?? "src/assets/cover-placeholder.png";
+  // default user Avatar to be added
+  const userAvatar = userObject.avatar ?? null;
+
   return (
     <div className="profile-page">
-      <img src="src/assets/cover-placeholder.png" alt="cover image"></img>
+      <img src={coverImg} alt="cover image"></img>
 
       <div className="profile">
         <div className="profile-card">
-          <img alt="user-avatar"></img>
-          <span className="user-screen-name">User Screen Name</span>
+          <img src={userAvatar} alt="user-avatar"></img>
+          <span className="user-screen-name">{userObject.name}</span>
           <div className="socials">
             <div>Twitter</div>
             <div>Twitch</div>
@@ -18,13 +22,16 @@ function Profile() {
         </div>
         <div className="profile-content">
           <div>
-            <span className="games-played">0</span> hrs of total playtime
+            <span className="games-playtime">{userObject.playtime}</span> of
+            total playtime
           </div>
           <div>
-            <span className="games-played">0</span> completed
+            <span className="games-completed">{userObject.completed}</span>{" "}
+            completed
           </div>
           <div>
-            <span className="games-completed">0</span> in backlog
+            <span className="games-backlog">{userObject.backlog}</span> in
+            backlog
           </div>
         </div>
       </div>

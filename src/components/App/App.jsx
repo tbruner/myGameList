@@ -28,6 +28,16 @@ function App() {
     completionTime: "1hr 24min",
   };
 
+  // User Object template
+  let userObject = {
+    name: "username",
+    coverImg: null,
+    avatar: null,
+    playtime: "0 min",
+    completed: 0,
+    backlog: 0,
+  };
+
   return (
     <>
       <TitleBar />
@@ -39,7 +49,10 @@ function App() {
               path="/game"
               element={<GamePage gameObject={gameObject} />}
             />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={<Profile userObject={userObject} />}
+            />
           </Routes>
         </BrowserRouter>
       </main>
