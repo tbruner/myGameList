@@ -6,6 +6,8 @@ function GamePage({ gameObject }) {
   let gameScoreStyle = {
     backgroundColor: "hsl(120, 9%, 46%)",
   };
+  const platforms = gameObject.platforms ?? [];
+  const genres = gameObject.genres ?? [];
 
   //gameScore background color; rating from 0 to 5
   if (gameScore === 5) {
@@ -38,13 +40,13 @@ function GamePage({ gameObject }) {
         <div className="platforms-genres">
           <div className="platforms">
             <div className="game-info-heading">Platforms</div>
-            {gameObject.platforms.map((platform) => (
+            {platforms.map((platform) => (
               <div key={platform + gameObject.title}>{platform}</div>
             ))}
           </div>
           <div className="genres">
             <div className="game-info-heading">Genres</div>
-            {gameObject.genres.map((genre) => (
+            {genres.map((genre) => (
               <div key={genre + gameObject.title}>{genre}</div>
             ))}
           </div>
