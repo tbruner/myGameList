@@ -23,7 +23,7 @@ function Homepage() {
           </ul>
         </div>
         <img
-          class="hero-img"
+          className="hero-img"
           src="/src/assets/Zelda-Breath-of-the-Wild.jpg"
         ></img>
       </section>

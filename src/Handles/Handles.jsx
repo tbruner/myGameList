@@ -16,3 +16,13 @@ export async function handleGameRequest(game) {
     console.error("No such data");
   }
 }
+
+export async function handleUserRequest(username) {
+  const userRef = doc(firestore, "user-list", username);
+  const userSnap = await getDoc(userRef);
+  if (userSnap.exists()) {
+    return userSnap.data();
+  } else {
+    console.error("No such data");
+  }
+}
