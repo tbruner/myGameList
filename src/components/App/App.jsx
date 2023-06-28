@@ -8,6 +8,7 @@ import "./App.css";
 import {
   handleGameRequest,
   handleUserRequest,
+  signInWithGoogle,
 } from "../../Handles/Handles.jsx";
 
 function App() {
@@ -30,9 +31,13 @@ function App() {
     setUserObj(await handleUserRequest("john-doe"));
   }
 
+  function signIn() {
+    signInWithGoogle();
+  }
+
   return (
     <>
-      <TitleBar />
+      <TitleBar signIn={signIn} />
       <main>
         <BrowserRouter>
           <Routes>

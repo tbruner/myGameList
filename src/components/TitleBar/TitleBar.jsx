@@ -1,6 +1,6 @@
 import "./TitleBar.css";
 
-function TitleBar() {
+function TitleBar({ signIn }) {
   return (
     <header>
       <nav>
@@ -12,7 +12,7 @@ function TitleBar() {
           </div>
         </div>
         <div className="login">
-          <button>Login</button>
+          <button onClick={signIn}>Login</button>
           <button>Sign Up</button>
         </div>
       </nav>
