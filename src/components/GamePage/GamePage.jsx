@@ -1,8 +1,9 @@
 import "./GamePage.css";
+import gameArtPlaceholder from "/src/assets/game-art-placeholder.png";
 
 function GamePage({ gameObject }) {
   const gameScore = gameObject.score;
-  const gameArt = gameObject.image ?? "src/assets/game-art-placeholder.png";
+  const gameArt = gameObject.image ?? gameArtPlaceholder;
   let gameScoreStyle = {
     backgroundColor: "hsl(120, 9%, 46%)",
   };

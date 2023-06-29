@@ -1,5 +1,6 @@
 import Trending from "./Trending.jsx";
 import "./Homepage.css";
+import heroImage from "/src/assets/Zelda-Breath-of-the-Wild.jpg";
 
 function Homepage() {
   return (
@@ -22,10 +23,7 @@ function Homepage() {
             <li>Discuss your favorite games in the fourm</li>
           </ul>
         </div>
-        <img
-          className="hero-img"
-          src="/src/assets/Zelda-Breath-of-the-Wild.jpg"
-        ></img>
+        <img className="hero-img" src={heroImage}></img>
       </section>
       <section className="home-section trending-games">
         <h2>Trending Games</h2>

@@ -1,7 +1,8 @@
 import "./Profile.css";
+import coverImagePlaceholder from "/src/assets/cover-placeholder.png";
 
 function Profile({ userObject }) {
-  const coverImg = userObject.coverImg ?? "src/assets/cover-placeholder.png";
+  const coverImg = userObject.coverImg ?? coverImagePlaceholder;
   // default user Avatar to be added
   const userAvatar = userObject.avatar ?? null;
 
