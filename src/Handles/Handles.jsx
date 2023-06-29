@@ -1,4 +1,5 @@
 import { doc, getDoc } from "@firebase/firestore";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firestore } from "../firebase";
 import {
   getAuth,
@@ -64,7 +65,20 @@ export async function signOutUser() {
       console.log(result);
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
+    });
+}
+
+export async function getImage(filepath) {
+  const storage = getStorage();
+  const imageRef = ref(storage, filepath);
+  return getDownloadURL(imageRef)
+    .then((url) => {
+      return url;
+    })
+    .catch((error) => {
+      console.error(error);
+      return null;
     });
 }
 

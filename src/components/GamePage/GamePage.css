@@ -1,5 +1,12 @@
 .game-page {
   display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}
+.game-section {
+  display: flex;
   align-items: center;
   gap: 25px;
 }
