@@ -13,13 +13,14 @@ import {
 
 function App() {
   useEffect(() => {
-    getGameObj("pacman");
+    getGameObj("supermariobros");
     getUserObj("john-doe");
   }, []);
 
   // Game Object information retrieved from IGDB https://www.igdb.com/
   const [gameObj, setGameObj] = useState({});
   const [userObj, setUserObj] = useState({});
+  let test = gameObj.path;
 
   //async functions to get data from firebase
   async function getGameObj(game) {
@@ -42,7 +43,10 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/game" element={<GamePage gameObject={gameObj} />} />
+            <Route
+              path="/game/:test"
+              element={<GamePage gameObject={gameObj} />}
+            />
             <Route path="/profile" element={<Profile userObject={userObj} />} />
           </Routes>
         </BrowserRouter>
