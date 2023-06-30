@@ -8,7 +8,7 @@ function GamePage({ gameObject }) {
   const [gameArt, setGameArt] = useState(gameArtPlaceholder);
   useEffect(() => {
     if (gameObject.image) {
-      getGameArt(gameObject.image);
+      setGameArt(gameObject.image);
     }
   }, [gameObject]);
 
@@ -31,11 +31,6 @@ function GamePage({ gameObject }) {
     gameScoreStyle = { backgroundColor: "#FFA44A" };
   } else if (gameScore < 1 && gameScore >= 0) {
     gameScoreStyle = { backgroundColor: "#FF003E" };
-  }
-
-  async function getGameArt(filepath) {
-    const temp = await getImage(filepath, "#gameArt");
-    if (temp != null) setGameArt(temp);
   }
 
   return (
