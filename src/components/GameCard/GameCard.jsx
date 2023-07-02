@@ -1,8 +1,9 @@
-function GameCard() {
+function GameCard({ game }) {
   return (
-    <>
-      <h2>Game Card</h2>
-    </>
+    <div className="game-card">
+      <img src={game.image}></img>
+      <div className="game-card-title">{game.title}</div>
+    </div>
   );
 }
 

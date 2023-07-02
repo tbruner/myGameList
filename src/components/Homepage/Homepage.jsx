@@ -2,7 +2,7 @@ import Trending from "./Trending.jsx";
 import "./Homepage.css";
 import heroImage from "/src/assets/Zelda-Breath-of-the-Wild.jpg";
 
-function Homepage() {
+function Homepage({ trendingGames }) {
   return (
     <>
       <section className="home-section hero">
@@ -27,7 +27,7 @@ function Homepage() {
       </section>
       <section className="home-section trending-games">
         <h2>Trending Games</h2>
-        <Trending />
+        <Trending trendingGames={trendingGames} />
       </section>
       <section className="home-section fourm">
         <h2>Fourm</h2>

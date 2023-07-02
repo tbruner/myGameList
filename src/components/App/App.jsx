@@ -16,11 +16,13 @@ function App() {
   useEffect(() => {
     getGameObj("supermariobros");
     getUserObj("john-doe");
+    getTrending();
   }, []);
 
   // Game Object information retrieved from IGDB https://www.igdb.com/
   const [gameObj, setGameObj] = useState({});
   const [userObj, setUserObj] = useState({});
+  const [trendingGames, setTrendingGames] = useState([]);
   let gamePath = gameObj.path;
 
   //async functions to get data from firebase
@@ -30,7 +32,14 @@ function App() {
   }
 
   async function getUserObj(user) {
-    setUserObj(await handleUserRequest("john-doe"));
+    setUserObj(await handleUserRequest(user));
+  }
+
+  async function getTrending() {
+    const game1 = await handleGameRequest("supermariobros");
+    const game2 = await handleGameRequest("pacman");
+    const temp = [game1, game2];
+    setTrendingGames(temp);
   }
 
   function signIn() {
@@ -43,7 +52,10 @@ function App() {
       <main>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Homepage />} />
+            <Route
+              path="/"
+              element={<Homepage trendingGames={trendingGames} />}
+            />
             <Route
               path="/game/:gamePath"
               element={<GamePage gameObject={gameObj} />}
