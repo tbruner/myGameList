@@ -20,7 +20,7 @@ function App() {
   // Game Object information retrieved from IGDB https://www.igdb.com/
   const [gameObj, setGameObj] = useState({});
   const [userObj, setUserObj] = useState({});
-  let test = gameObj.path;
+  let gamePath = gameObj.path;
 
   //async functions to get data from firebase
   async function getGameObj(game) {
@@ -44,7 +44,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route
-              path="/game/:test"
+              path="/game/:gamePath"
               element={<GamePage gameObject={gameObj} />}
             />
             <Route path="/profile" element={<Profile userObject={userObj} />} />
