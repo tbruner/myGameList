@@ -4,6 +4,7 @@ import GamePage from "../GamePage/GamePage.jsx";
 import Homepage from "../Homepage/Homepage.jsx";
 import Profile from "../Profile/Profile.jsx";
 import TitleBar from "../TitleBar/TitleBar.jsx";
+import NoMatch from "../NoMatch.jsx";
 import "./App.css";
 import {
   handleGameRequest,
@@ -48,6 +49,7 @@ function App() {
               element={<GamePage gameObject={gameObj} />}
             />
             <Route path="/profile" element={<Profile userObject={userObj} />} />
+            <Route path="*" element={<NoMatch />}></Route>
           </Routes>
         </BrowserRouter>
       </main>
