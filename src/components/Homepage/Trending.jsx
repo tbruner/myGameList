@@ -1,4 +1,5 @@
 import GameCard from "../GameCard/GameCard";
+import "./Trending.css";
 
 function Trending({ trendingGames }) {
   return (
