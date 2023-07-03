@@ -1,3 +1,5 @@
+import "./GameCard.css";
+
 function GameCard({ game }) {
   const gamePagePath = "/game/" + game.path;
   return (
