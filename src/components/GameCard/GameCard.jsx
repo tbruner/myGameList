@@ -1,9 +1,10 @@
 function GameCard({ game }) {
+  const gamePagePath = "/game/" + game.path;
   return (
-    <div className="game-card">
+    <a href={gamePagePath} className="game-card">
       <img src={game.image}></img>
       <div className="game-card-title">{game.title}</div>
-    </div>
+    </a>
   );
 }
 
