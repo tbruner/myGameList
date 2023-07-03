@@ -10,7 +10,7 @@ function GamePage() {
   // Game Object information retrieved from IGDB https://www.igdb.com/
   const [gameObject, setGameObject] = useState({
     title: "Game",
-    gameScore: "-",
+    score: "-",
     developer: "developer",
     publisher: "publisher",
     description: "game description",
@@ -29,17 +29,17 @@ function GamePage() {
   };
 
   //gameScore background color; rating from 0 to 5
-  if (gameObject.gameScore === 5) {
+  if (gameObject.score === 5) {
     gameScoreStyle = { backgroundColor: "#00BC29" };
-  } else if (gameObject.gameScore < 5 && gameObject.gameScore >= 4) {
+  } else if (gameObject.score < 5 && gameObject.score >= 4) {
     gameScoreStyle = { backgroundColor: "#39DC2D" };
-  } else if (gameObject.gameScore < 4 && gameObject.gameScore >= 3) {
+  } else if (gameObject.score < 4 && gameObject.score >= 3) {
     gameScoreStyle = { backgroundColor: "#B4D631" };
-  } else if (gameObject.gameScore < 3 && gameObject.gameScore >= 2) {
+  } else if (gameObject.score < 3 && gameObject.score >= 2) {
     gameScoreStyle = { backgroundColor: "#FFC739" };
-  } else if (gameObject.gameScore < 2 && gameObject.gameScore >= 1) {
+  } else if (gameObject.score < 2 && gameObject.score >= 1) {
     gameScoreStyle = { backgroundColor: "#FFA44A" };
-  } else if (gameObject.gameScore < 1 && gameObject.gameScore >= 0) {
+  } else if (gameObject.score < 1 && gameObject.score >= 0) {
     gameScoreStyle = { backgroundColor: "#FF003E" };
   }
 
@@ -79,7 +79,7 @@ function GamePage() {
           <div className="game-score-card">
             <div>Score</div>
             <div className="avg-game-score" style={gameScoreStyle}>
-              {gameObject.gameScore}
+              {gameObject.score}
             </div>
             <button className="submit-score">Submit Score</button>
           </div>
