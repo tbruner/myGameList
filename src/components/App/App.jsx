@@ -29,7 +29,8 @@ function App() {
   async function getTrending() {
     const game1 = await handleGameRequest("supermariobros");
     const game2 = await handleGameRequest("pacman");
-    const temp = [game1, game2];
+    const game3 = await handleGameRequest("metalgearsolid");
+    const temp = [game1, game2, game3];
     setTrendingGames(temp);
   }
 
