@@ -1,6 +1,7 @@
 import "./TitleBar.css";
+import { isUserSignedIn } from "../../Handles/Handles";
 
-function TitleBar({ signIn }) {
+function TitleBar({ signIn, signOut }) {
   return (
     <header>
       <nav>
@@ -12,8 +13,14 @@ function TitleBar({ signIn }) {
           </div>
         </div>
         <div className="login">
-          <button onClick={signIn}>Login</button>
-          <button>Sign Up</button>
+          {isUserSignedIn() ? (
+            <button onClick={signOut}>Sign Out</button>
+          ) : (
+            <>
+              <button onClick={signIn}>Login</button>
+              <button>Sign Up</button>
+            </>
+          )}
         </div>
       </nav>
     </header>
