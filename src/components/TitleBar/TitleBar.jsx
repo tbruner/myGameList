@@ -1,7 +1,18 @@
 import "./TitleBar.css";
-import { isUserSignedIn } from "../../Handles/Handles";
+import { handleUserRequest } from "../../Handles/Handles";
+import { useState, useEffect } from "react";
 
-function TitleBar({ signIn, signOut }) {
+function TitleBar({ signIn, signOut, userId }) {
+  const [userName, setUserName] = useState(false);
+
+  useEffect(() => {
+    if (userId) getUserName(userId);
+  }, [userId]);
+
+  async function getUserName(user) {
+    const userObj = await handleUserRequest(user);
+    if (userObj) setUserName(userObj);
+  }
   return (
     <header>
       <nav>
@@ -13,8 +24,11 @@ function TitleBar({ signIn, signOut }) {
           </div>
         </div>
         <div className="login">
-          {isUserSignedIn() ? (
-            <button onClick={signOut}>Sign Out</button>
+          {userId ? (
+            <>
+              <div>Hi, {userName}</div>
+              <button onClick={signOut}>Sign Out</button>
+            </>
           ) : (
             <>
               <button onClick={signIn}>Login</button>

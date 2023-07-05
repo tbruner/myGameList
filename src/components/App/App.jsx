@@ -8,8 +8,11 @@ import NoMatch from "../NoMatch.jsx";
 import "./App.css";
 import {
   handleGameRequest,
+  handleUserRequest,
+  isUserSignedIn,
   signInWithGoogle,
   signOutUser,
+  createUser,
 } from "../../Handles/Handles.jsx";
 
 function App() {
@@ -18,6 +21,7 @@ function App() {
   }, []);
 
   const [trendingGames, setTrendingGames] = useState([]);
+  const [userId, setUserId] = useState(null);
 
   //async function to get data from firebase
   async function getTrending() {
@@ -28,17 +32,25 @@ function App() {
     setTrendingGames(temp);
   }
 
-  function signIn() {
-    signInWithGoogle();
+  async function signIn() {
+    const { uid, displayName } = await signInWithGoogle();
+    const doesUserExist = await handleUserRequest(uid);
+
+    if (!doesUserExist) {
+      createUser(uid, displayName);
+    }
+    setUserId(uid);
   }
 
   function signOut() {
     signOutUser();
+    const { uid } = isUserSignedIn();
+    setUserId(uid);
   }
 
   return (
     <>
-      <TitleBar signIn={signIn} signOut={signOut} />
+      <TitleBar signIn={signIn} signOut={signOut} userId={userId} />
       <main>
         <BrowserRouter>
           <Routes>

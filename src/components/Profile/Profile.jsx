@@ -2,7 +2,7 @@ import "./Profile.css";
 import coverImagePlaceholder from "/src/assets/cover-placeholder.png";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { handleUserRequest, isUserSignedIn } from "../../Handles/Handles";
+import { handleUserRequest } from "../../Handles/Handles";
 
 function Profile() {
   const [userObj, setUserObj] = useState({
@@ -14,16 +14,17 @@ function Profile() {
     playtime: "0hrs",
   });
 
+  const [currentUser, setCurrentUser] = useState(false);
+
   const { user } = useParams();
 
   useEffect(() => {
     getUserObj(user);
-    console.log("user", isUserSignedIn(user));
   }, []);
 
   async function getUserObj(user) {
     const temp = await handleUserRequest(user);
-    if (temp) setUserObj(await handleUserRequest(user));
+    if (temp) setUserObj(temp);
   }
 
   return (
@@ -42,6 +43,7 @@ function Profile() {
           </div>
         </div>
         <div className="profile-content">
+          {currentUser ? <button id="edit-profile">Edit Profile</button> : null}
           <div>
             <span className="games-playtime">{userObj.playtime}</span> of total
             playtime

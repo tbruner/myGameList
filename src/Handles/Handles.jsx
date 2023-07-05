@@ -1,4 +1,4 @@
-import { doc, getDoc } from "@firebase/firestore";
+import { doc, getDoc, setDoc } from "@firebase/firestore";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
 import { firestore } from "../firebase";
 import {
@@ -19,26 +19,41 @@ export async function handleGameRequest(game) {
   }
 }
 
-export async function handleUserRequest(username) {
-  const userRef = doc(firestore, "user-list", username);
+export async function handleUserRequest(userId) {
+  const userRef = doc(firestore, "user-list", userId);
   const userSnap = await getDoc(userRef);
   if (userSnap.exists()) {
     return userSnap.data();
   } else {
     console.error("No such data");
+    return null;
+  }
+}
+
+export async function createUser(userId, name) {
+  try {
+    await setDoc(doc(firestore, "user-list", userId), {
+      name: name,
+      backlog: "0",
+      completed: "0",
+      playingTime: "0hrs",
+      avatar: null,
+      coverImg: "/src/assets/cover-placeholder.png",
+    });
+  } catch (error) {
+    console.error("Error adding user", error);
   }
 }
 
 export async function signInWithGoogle() {
   // Sign in Firebase using popup auth and Google as the identity provider.
   var provider = new GoogleAuthProvider();
-  await signInWithPopup(getAuth(), provider)
+  return await signInWithPopup(getAuth(), provider)
     .then((result) => {
-      console.log(result.user);
       return result.user;
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
     });
 }
 
