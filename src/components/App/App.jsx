@@ -8,24 +8,18 @@ import NoMatch from "../NoMatch.jsx";
 import "./App.css";
 import {
   handleGameRequest,
-  handleUserRequest,
   signInWithGoogle,
+  signOutUser,
 } from "../../Handles/Handles.jsx";
 
 function App() {
   useEffect(() => {
-    getUserObj("john-doe");
     getTrending();
   }, []);
 
-  const [userObj, setUserObj] = useState({});
   const [trendingGames, setTrendingGames] = useState([]);
 
-  //async functions to get data from firebase
-  async function getUserObj(user) {
-    setUserObj(await handleUserRequest(user));
-  }
-
+  //async function to get data from firebase
   async function getTrending() {
     const game1 = await handleGameRequest("supermariobros");
     const game2 = await handleGameRequest("pacman");
@@ -38,9 +32,13 @@ function App() {
     signInWithGoogle();
   }
 
+  function signOut() {
+    signOutUser();
+  }
+
   return (
     <>
-      <TitleBar signIn={signIn} />
+      <TitleBar signIn={signIn} signOut={signOut} />
       <main>
         <BrowserRouter>
           <Routes>
@@ -49,7 +47,7 @@ function App() {
               element={<Homepage trendingGames={trendingGames} />}
             />
             <Route path="/game/:gamePath" element={<GamePage />} />
-            <Route path="/profile" element={<Profile userObject={userObj} />} />
+            <Route path="/profile/:user" element={<Profile />} />
             <Route path="*" element={<NoMatch />}></Route>
           </Routes>
         </BrowserRouter>
