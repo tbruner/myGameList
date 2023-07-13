@@ -25,15 +25,16 @@ export async function handleUserRequest(userId) {
   if (userSnap.exists()) {
     return userSnap.data();
   } else {
-    console.error("No such data");
+    console.error("User not found");
     return null;
   }
 }
 
-export async function createUser(userId, name) {
+export async function createUser(path) {
   try {
-    await setDoc(doc(firestore, "user-list", userId), {
-      name: name,
+    await setDoc(doc(firestore, "user-list", path), {
+      name: path,
+      userPath: path,
       backlog: "0",
       completed: "0",
       playingTime: "0hrs",

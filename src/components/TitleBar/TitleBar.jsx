@@ -2,12 +2,12 @@ import "./TitleBar.css";
 import { handleUserRequest } from "../../Handles/Handles";
 import { useState, useEffect } from "react";
 
-function TitleBar({ signIn, signOut, userId }) {
+function TitleBar({ signIn, signOut, userPath }) {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
-    if (userId) getUserName(userId);
-  }, [userId]);
+    if (userPath) getUserName(userPath);
+  }, [userPath]);
 
   async function getUserName(user) {
     const { name } = await handleUserRequest(user);
@@ -24,7 +24,7 @@ function TitleBar({ signIn, signOut, userId }) {
           </div>
         </div>
         <div className="login">
-          {userId ? (
+          {userPath ? (
             <>
               <div>Hi, {userName}</div>
               <button onClick={signOut}>Sign Out</button>

@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   const [trendingGames, setTrendingGames] = useState([]);
-  const [userId, setUserId] = useState(null);
+  const [userPath, setUserPath] = useState(null);
 
   //async function to get data from firebase
   async function getTrending() {
@@ -34,23 +34,31 @@ function App() {
 
   async function signIn() {
     const { uid, displayName } = await signInWithGoogle();
-    const doesUserExist = await handleUserRequest(uid);
+    //
+    let path;
+
+    if (displayName) {
+      path = displayName.replace(/\s+/g, "");
+      path = path.toLowerCase();
+    } else path = null;
+
+    const doesUserExist = await handleUserRequest(path);
 
     if (!doesUserExist) {
-      createUser(uid, displayName);
+      createUser(path);
     }
-    setUserId(uid);
+    setUserPath(path);
   }
 
   function signOut() {
     signOutUser();
-    const { uid } = isUserSignedIn();
-    setUserId(uid);
+    const { path } = isUserSignedIn();
+    setUserPath(path);
   }
 
   return (
     <>
-      <TitleBar signIn={signIn} signOut={signOut} userId={userId} />
+      <TitleBar signIn={signIn} signOut={signOut} userPath={userPath} />
       <main>
         <BrowserRouter>
           <Routes>
