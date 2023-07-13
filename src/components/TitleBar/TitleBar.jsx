@@ -3,15 +3,15 @@ import { handleUserRequest } from "../../Handles/Handles";
 import { useState, useEffect } from "react";
 
 function TitleBar({ signIn, signOut, userId }) {
-  const [userName, setUserName] = useState(false);
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     if (userId) getUserName(userId);
   }, [userId]);
 
   async function getUserName(user) {
-    const userObj = await handleUserRequest(user);
-    if (userObj) setUserName(userObj);
+    const { name } = await handleUserRequest(user);
+    if (name) setUserName(name);
   }
   return (
     <header>
