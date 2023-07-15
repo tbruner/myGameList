@@ -3,6 +3,7 @@ import coverImagePlaceholder from "/src/assets/cover-placeholder.png";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { handleUserRequest } from "../../Handles/Handles";
+import ProfileEdit from "./ProfileEdit";
 
 function Profile() {
   const [userObj, setUserObj] = useState({
@@ -15,6 +16,7 @@ function Profile() {
   });
 
   const [currentUser, setCurrentUser] = useState(false);
+  const [editState, setEditState] = useState(false);
 
   const { user } = useParams();
 
@@ -27,6 +29,10 @@ function Profile() {
     if (temp) setUserObj(temp);
   }
 
+  function edit() {
+    setEditState(!editState);
+  }
+
   return (
     <div className="profile-page">
       <img src={userObj.coverImg} alt="cover image"></img>
@@ -35,6 +41,9 @@ function Profile() {
         <div className="profile-card">
           <img src={userObj.avatar} alt="user-avatar"></img>
           <span className="user-screen-name">{userObj.name}</span>
+          <button className="edit-profile" onClick={edit}>
+            Edit
+          </button>
           <div className="socials">
             <div>Twitter</div>
             <div>Twitch</div>
@@ -57,6 +66,7 @@ function Profile() {
           </div>
         </div>
       </div>
+      <ProfileEdit display={editState} user={userObj} edit={edit} />
     </div>
   );
 }
